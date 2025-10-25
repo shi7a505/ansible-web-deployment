@@ -4,7 +4,7 @@
   become: true
   vars:
     web_root: /var/www/html
-    website_source: your-website-files  # Change this to your website directory name
+    website_source: 2136_kool_form_pack
     apache_service: httpd
     web_owner: ec2-user
     web_group: ec2-user
