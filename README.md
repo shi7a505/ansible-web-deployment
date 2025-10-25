@@ -19,8 +19,7 @@ This project provides a complete automation solution for deploying static websit
 ## 📸 Project in Action
 
 ### **Website Successfully Deployed**
-![Website Live](screenshots
-/Screenshot 2025-10-25 031307.png)
+![Website Live](screenshots/02-website-live.png)
 
 ### **Connectivity Test Passed**
 ![Ansible Ping Test](screenshots/01-connectivity-test.png)
