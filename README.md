@@ -16,10 +16,21 @@ This project provides a complete automation solution for deploying static websit
 
 ---
 
+## 📸 Project in Action
+
+### **Website Successfully Deployed**
+![Website Live](screenshots/02-website-live.png)
+
+### **Connectivity Test Passed**
+![Ansible Ping Test](screenshots/01-connectivity-test.png)
+
+---
+
 ## 🏗️ Project Structure
 
 ```
 ansible-web-deployment/
+├── screenshots/               # Project screenshots
 ├── your-website-files/        # Your static website files (HTML, CSS, JS, images)
 ├── inventory                  # Server definitions
 ├── ansible.cfg                # Ansible configuration
@@ -157,6 +168,10 @@ curl -I http://YOUR_SERVER_IP
 http://YOUR_SERVER_IP
 ```
 
+**Expected Result:**
+
+![Website Deployed Successfully](screenshots/02-website-live.png)
+
 ---
 
 ## 🏷️ Advanced Usage with Tags
@@ -256,6 +271,10 @@ ansible web -m shell -a "ls -lah /var/www/html/"
 ```bash
 ansible all -m ping
 ```
+
+**Expected Output:**
+
+![Ansible Ping Test](screenshots/01-connectivity-test.png)
 
 ### **Check Apache is Listening**
 ```bash
@@ -513,7 +532,7 @@ If you encounter issues:
 ---
 
 **Version**: 1.0  
-**Last Updated**: 2025-10-25  
+**Last Updated**: 2025-01-25  
 **Tested with**: Ansible 2.9+, Amazon Linux 2, Apache 2.4
 
 ---
