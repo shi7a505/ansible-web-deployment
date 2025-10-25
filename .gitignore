@@ -1,0 +1,36 @@
+# Ansible
+*.retry
+*.log
+.vault_pass
+/tmp/
+/facts/
+
+# SSH Keys (IMPORTANT!)
+*.pem
+*.key
+id_rsa*
+*.ppk
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+*.backup
+*~
