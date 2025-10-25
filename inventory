@@ -1,4 +1,3 @@
-\
 [web]
 web01 ansible_host=13.51.162.177 ansible_user=ec2-user
 
