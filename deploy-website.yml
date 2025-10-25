@@ -1,0 +1,77 @@
+---
+- name: Deploy static website to web servers
+  hosts: web
+  become: true
+  vars:
+    web_root: /var/www/html
+    website_source: your-website-files  # Change this to your website directory name
+    apache_service: httpd
+    web_owner: ec2-user
+    web_group: ec2-user
+
+  tasks:
+    - name: Ensure Apache is installed
+      ansible.builtin.yum:
+        name: "{{ apache_service }}"
+        state: present
+      tags:
+        - install
+
+    - name: Clean old website files
+      ansible.builtin.file:
+        path: "{{ web_root }}/"
+        state: absent
+      tags:
+        - cleanup
+
+    - name: Recreate web root directory
+      ansible.builtin.file:
+        path: "{{ web_root }}"
+        state: directory
+        owner: "{{ web_owner }}"
+        group: "{{ web_group }}"
+        mode: '0755'
+      tags:
+        - cleanup
+
+    - name: Copy website files to web root
+      ansible.builtin.copy:
+        src: "{{ website_source }}/"
+        dest: "{{ web_root }}/"
+        owner: "{{ web_owner }}"
+        group: "{{ web_group }}"
+        mode: '0755'
+      notify:
+        - Restart Apache
+      tags:
+        - deploy
+
+    - name: Ensure Apache service is running and enabled
+      ansible.builtin.service:
+        name: "{{ apache_service }}"
+        state: started
+        enabled: yes
+      tags:
+        - service
+
+    - name: Check if website is accessible
+      ansible.builtin.uri:
+        url: "http://{{ ansible_default_ipv4.address }}"
+        status_code: 200
+      register: website_check
+      ignore_errors: yes
+      tags:
+        - verify
+
+    - name: Display deployment status
+      ansible.builtin.debug:
+        msg: "✅ Website deployed successfully at http://{{ ansible_default_ipv4.address }}"
+      when: website_check is succeeded
+      tags:
+        - verify
+
+  handlers:
+    - name: Restart Apache
+      ansible.builtin.service:
+        name: "{{ apache_service }}"
+        state: restarted
