@@ -216,7 +216,7 @@ ansible-playbook deploy-website.yml --tags deploy,verify
 
 ---
 
-## 🎯 Target Specific Hosts
+##  Target Specific Hosts
 
 Deploy to specific servers:
 
